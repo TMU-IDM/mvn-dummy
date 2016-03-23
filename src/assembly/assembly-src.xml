@@ -1,0 +1,31 @@
+<assembly>
+	<id>source</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>docs</directory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+		</fileSet>
+        <fileSet>
+            <directory>repo</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+	</fileSets>
+</assembly>

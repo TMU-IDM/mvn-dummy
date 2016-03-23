@@ -1,0 +1,107 @@
+## Project ignores
+
+# jar files are copied here via maven package command
+/run/lib/*.jar
+/run/lib/*.tar.gz
+
+# keep the log directory, but do not add the contents to git.
+/run/logs/*
+!/run/logs/gitkeep
+
+
+## general ignores
+
+# Java
+*.class
+.classpath
+.project
+
+# Package Files #
+# *.jar
+*.war
+*.ear
+
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Notepad++ backups #
+*.bak
+
+
+# Eclipse
+.metadata
+## bin/
+tmp/
+*.tmp
+## *.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# emacs
+
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# vim
+
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+# *~
+run/lib/helloworld-0.0.1-SNAPSHOT.jar
+/bin
+/target
+/target
+/target
+/target

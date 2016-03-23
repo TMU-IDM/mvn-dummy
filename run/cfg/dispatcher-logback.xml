@@ -1,0 +1,53 @@
+<configuration debug="true" scan="true">
+    <!--  scan="true": check for changes every Minute and reload config, if required. -->
+	<!-- Log Level hierarchy: error, warn, info, debug, trace -->
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are by default assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<target>System.err</target>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../logs/dispatcher.log</file>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- hourly rollover -->
+			<fileNamePattern>../logs/dispatcher.log.%d{yyyy-MM-dd_HH}.gz
+			</fileNamePattern>
+			<!-- keep 2 weeks worth of history -->
+			<maxHistory>336</maxHistory> <!-- number of logfiles kept. -->
+		</rollingPolicy>
+
+		<append>true</append>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-23d [%thread] %-5level %logger{32} - %m%n</Pattern>
+		</layout>
+	</appender>
+
+	<!-- Asynchronous Log writing -->
+	<appender name="ASYNC-STDOUT" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="STDOUT" />
+		<queueSize>512</queueSize>
+		<discardingThreshold>0</discardingThreshold>
+	</appender>
+	<appender name="ASYNC-FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE" />
+		<queueSize>512</queueSize>
+		<discardingThreshold>0</discardingThreshold>
+	</appender>
+
+	<logger name="org.apache.activemq" additivity="true">
+		<level value="INFO" />
+		<appender-ref ref="ASYNC-FILE" />
+	</logger>
+
+	<!-- Loglevel INFO: Will log RFP and RouterOutMessage. -->
+	<root level="TRACE">
+        <appender-ref ref="ASYNC-FILE" />
+	</root>
+
+</configuration>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<feature>
+		<type>dispatcher</type>
+	</feature>
+	<amqp>
+		<brokerurl>tcp://%{BROKERURL}:%{BROKERPORT}</brokerurl>
+		<queue>
+			<!-- ?consumer.prefetchSize=100: required for multiple threads accessing 
+				the queue. -->
+			<in>K_router.IN</in>
+			<out>K_router.IN</out>
+			<prefetchSize>0</prefetchSize>
+			<prefixes>
+				<lookupPrefix>lookup</lookupPrefix>
+				<pdaPrefix>pda</pdaPrefix>
+				<garbagePrefix>garbage</garbagePrefix>
+			</prefixes>
+		</queue>
+		<PoolableConnectionFactory>
+			<maxActiveSessionsPerConnection>500</maxActiveSessionsPerConnection>
+			<maxConnections>20</maxConnections>
+			<blockIfSessionPoolIsFull>true</blockIfSessionPoolIsFull>
+			<blockIfSessionPoolIsFullTimeout>-1</blockIfSessionPoolIsFullTimeout>
+			<createConnectionsOnStartup>true</createConnectionsOnStartup>
+			<expiryTimeout>0</expiryTimeout>
+			<idleTimeout>30000</idleTimeout>
+			<timeBetweenExpirationChecksMillis>0</timeBetweenExpirationChecksMillis>
+			<useAnonymousProducers>true</useAnonymousProducers>
+		</PoolableConnectionFactory>
+	</amqp>
+	<dispatcher>
+		<processor>
+			<!-- The values for scaling, sleeptime in ms, checklimit and helplimit 
+				in messages (how many total, how many should get sleep) -->
+			<waittime>100</waittime>		</processor>
+	</dispatcher>
+</configuration>
